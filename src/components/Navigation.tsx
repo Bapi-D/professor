@@ -143,7 +143,16 @@ export function Navigation() {
                 <div key={item.name}>
                   <a
                     href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsMobileMenuOpen(false);
+                      setTimeout(() => {
+                        const element = document.querySelector(item.href);
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }, 300);
+                    }}
                     className="block text-lg font-medium text-foreground hover:text-primary transition-colors"
                   >
                     {item.name}
@@ -154,7 +163,16 @@ export function Navigation() {
                         <a
                           key={subItem.name}
                           href={subItem.href}
-                          onClick={() => setIsMobileMenuOpen(false)}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setIsMobileMenuOpen(false);
+                            setTimeout(() => {
+                              const element = document.querySelector(subItem.href);
+                              if (element) {
+                                element.scrollIntoView({ behavior: 'smooth' });
+                              }
+                            }, 300);
+                          }}
                           className="block text-sm text-muted-foreground hover:text-primary transition-colors"
                         >
                           {subItem.name}
@@ -166,7 +184,16 @@ export function Navigation() {
               ))}
               <a
                 href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setTimeout(() => {
+                    const element = document.querySelector('#contact');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }, 300);
+                }}
                 className="block w-full text-center px-6 py-3 bg-primary text-primary-foreground font-medium rounded-full mt-4"
               >
                 Contact

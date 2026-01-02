@@ -9,6 +9,21 @@ const books = [
     isbn: "9781032663623",
     amazonLink: "https://www.amazon.in/Securing-Digital-World-Comprehensive-Multimedia-ebook/dp/B0DQXHDBRK/",
     description: "A comprehensive guide covering the latest techniques and methodologies in multimedia security, including image encryption, secure communication, and cryptographic protocols.",
+    hasImage: true,
+    buttonText: "Buy on Amazon",
+    icon: ShoppingCart,
+  },
+  {
+    title: "Fortressing Pixels: Information security for images, videos, audio and beyond",
+    authors: "Edited by Subhrajyoti Deb, Adnan Abdul-Aziz Gutub, Aditya Kumar Sahu",
+    publisher: "CRC Press Taylor and Francis Group",
+    isbn: "9781032663623",
+    amazonLink: "https://digital-library.theiet.org/doi/abs/10.1049/PBSE030E",
+    description: "Emerging and pivotal technologies such as artificial intelligence and deep learning, cloud computing, internet of things, blockchain, encryption, and quantum cryptography are required to meet multimedia data's evolving needs and security requirements.",
+    hasImage: true,
+    imageSrc: "/book2.jpg",
+    buttonText: "View Book",
+    icon: ExternalLink,
   }
 ];
 
@@ -56,13 +71,19 @@ export function BooksSection() {
                 <div className="flex flex-col md:flex-row gap-6">
                   {/* Book Cover */}
                   <div className="w-full md:w-48 flex-shrink-0">
-                    <div className="aspect-[3/4] rounded-xl overflow-hidden glass-card border border-primary/20">
-                      <img
-                        src="/book.jpg"
-                        alt="Book Cover"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    {book.hasImage ? (
+                      <div className="aspect-[3/4] rounded-xl overflow-hidden glass-card border border-primary/20">
+                        <img
+                          src={book.imageSrc || "/book.jpg"}
+                          alt="Book Cover"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="aspect-square rounded-xl glass-card border border-primary/20 flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
+                        <BookOpen className="w-12 h-12 text-white" />
+                      </div>
+                    )}
                   </div>
 
                   {/* Book Details */}
@@ -98,8 +119,8 @@ export function BooksSection() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <ShoppingCart className="w-4 h-4" />
-                        Buy on Amazon
+                        <book.icon className="w-4 h-4" />
+                        {book.buttonText}
                         <ExternalLink className="w-3 h-3" />
                       </motion.a>
                     </div>
